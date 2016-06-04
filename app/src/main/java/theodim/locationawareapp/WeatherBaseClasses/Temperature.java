@@ -15,6 +15,10 @@ public class Temperature {
         this.maxTemp = maxTemp;
     }
 
+    public Temperature() {
+
+    }
+
     public float getTemp() {
         return temp;
     }

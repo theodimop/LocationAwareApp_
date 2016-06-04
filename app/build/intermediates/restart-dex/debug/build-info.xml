@@ -4,42 +4,29 @@
     api-level="21"
     density="xxxhdpi"
     format="7"
-    timestamp="176512883070698"
-    verifier="COMPATIBLE" >
+    timestamp="35569481211954" >
 
     <task
         name="javac"
-        duration="250" />
+        duration="316" />
     <task
         name="instant-run-dex"
-        duration="743" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="92" />
+        duration="113" />
     <task
         name="verifier"
-        duration="4" />
+        duration="7" />
 
     <artifact
-        location="C:\Users\dj_di_000\Documents\Android Studio\LocationAwareApp\app\build\intermediates\reload-dex\debug\classes.dex"
-        type="RELOAD_DEX" />
+        location="C:\Users\dj_di_000\Documents\Android Studio\LocationAwareApp\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="174594228564472" >
+    <build timestamp="35569481211954" >
         <artifact
             location="C:\Users\dj_di_000\Documents\Android Studio\LocationAwareApp\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="176459457992768" >
-        <artifact
-            location="C:\Users\dj_di_000\Documents\Android Studio\LocationAwareApp\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_8\classes.dex"
-            type="DEX" />
-    </build>
-    <build
-        timestamp="176512883070698"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Users\dj_di_000\Documents\Android Studio\LocationAwareApp\app\build\intermediates\reload-dex\debug\classes.dex"
-            type="RELOAD_DEX" />
     </build>
 
 </instant-run>

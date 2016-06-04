@@ -12,6 +12,10 @@ public class Wind {
         this.deg = deg;
     }
 
+    public Wind() {
+
+    }
+
     public float getSpeed() {
         return speed;
     }

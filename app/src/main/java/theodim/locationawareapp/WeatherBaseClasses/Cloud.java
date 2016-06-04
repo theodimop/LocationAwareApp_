@@ -3,16 +3,20 @@ package theodim.locationawareapp.WeatherBaseClasses;
 /**
  * Created by Theo on 4/6/2016.
  */
-public class Clouds {
+public class Cloud {
 
     private int percentage;
 
     /**
      * @param percentage This is the percentage of the sky coverage by cloud
      */
-    public Clouds(int percentage)
+    public Cloud(int percentage)
     {
         this.percentage=percentage;
+    }
+
+    public Cloud() {
+
     }
 
     public int getPerc() {

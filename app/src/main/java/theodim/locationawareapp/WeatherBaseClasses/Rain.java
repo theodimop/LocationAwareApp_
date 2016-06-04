@@ -5,11 +5,15 @@ package theodim.locationawareapp.WeatherBaseClasses;
  */
 public class Rain {
     private String time;
-    private float ammount;
+    private float amount;
 
-    public Rain(String time, float ammount) {
+    public Rain(String time, float amount) {
         this.time = time;
-        this.ammount = ammount;
+        this.amount = amount;
+    }
+
+    public Rain() {
+
     }
 
     public String getTime() {
@@ -18,10 +22,10 @@ public class Rain {
     public void setTime(String time) {
         this.time = time;
     }
-    public float getAmmount() {
-        return ammount;
+    public float getAmount() {
+        return amount;
     }
-    public void setAmmount(float ammount) {
-        this.ammount = ammount;
+    public void setAmount(float amount) {
+        this.amount = amount;
     }
 }

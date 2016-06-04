@@ -2,6 +2,7 @@ package theodim.locationawareapp;
 
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -13,7 +14,7 @@ import theodim.locationawareapp.openweathermap.Weather;
 /**
  * Created by dj_di_000 on 15/5/2016.
  */
-public class WeatherInfomation {
+public class WeatherInformation {
 
 
     private JSONWeatherTask weatherTask;
@@ -22,21 +23,24 @@ public class WeatherInfomation {
     String data;
     OpenWeatherMapHttpClient openWeatherMapHttpClient = new OpenWeatherMapHttpClient();
 
-    public WeatherInfomation(TextView textView){
+    public WeatherInformation(TextView textView){
 
        // weatherTask=new JSONWeatherTask();
        // weatherTask.execute(new String[]{"London,UK"});
         this.textView=textView;
        // data = openWeatherMapHttpClient.getWeatherDataByCityName("Thessaloniki,gr");
 
-        data = openWeatherMapHttpClient.getUV_IndexData(41,23);
-        textView.setText(data);
+      //  data = openWeatherMapHttpClient.getUV_IndexData(41,23);
+        data=openWeatherMapHttpClient.getForecast5DataByCityName("Thessaloniki");
+        //Log.d("THEO",data);
+        //textView.setText(data);
 
         try {
 
-            UV_Index uv_index= OpenWeatherResponseJSONParser.getUV_Index(data);
-            textView.setText(String.valueOf(uv_index.getuV_Index())+" "+uv_index.getLocation().getLatitude());
-       //    Forecast5 forecast5 = OpenWeatherResponseJSONParser.getForecast5(data);
+          //  UV_Index uv_index= OpenWeatherResponseJSONParser.getUV_Index(data);
+          //  textView.setText(String.valueOf(uv_index.getuV_Index())+" "+uv_index.getLocation().getLatitude());
+            Forecast5 forecast5 = OpenWeatherResponseJSONParser.getForecast5(data);
+            DataAnalysis.analyzeForecast5(forecast5);
        //    textView.setText(forecast5.getThreeHourPeriodWeatherByIndex(15).getWeather().currentCondition.getCondition());
         } catch (JSONException e) {
             e.printStackTrace();

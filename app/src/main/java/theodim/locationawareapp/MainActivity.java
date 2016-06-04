@@ -1,24 +1,12 @@
 package theodim.locationawareapp;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.StrictMode;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 
 import theodim.locationawareapp.openweathermap.Weather;
-
-import static theodim.locationawareapp.Message.logMessage;
-import static theodim.locationawareapp.Message.toastMessage;
 
 public class MainActivity extends AppCompatActivity// implements ConnectionCallbacks, OnConnectionFailedListener {
 {
@@ -49,7 +37,7 @@ public class MainActivity extends AppCompatActivity// implements ConnectionCallb
         textView= (TextView) findViewById(R.id.textView);
         textViewWeatherInfo= (TextView) findViewById(R.id.textView2);
 
-        WeatherInfomation weatherInfomation=new WeatherInfomation(textViewWeatherInfo);
+        WeatherInformation weatherInfomation=new WeatherInformation(textViewWeatherInfo);
 
     }
 /*

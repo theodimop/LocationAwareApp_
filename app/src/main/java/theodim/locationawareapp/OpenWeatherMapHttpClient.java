@@ -22,29 +22,23 @@ public class OpenWeatherMapHttpClient {
 
 
     //The uv index request must be with integer coordinates to secure and accepted response
-    @NonNull
     public String getUV_IndexData(int iLatitude,int iLongitude){
         String sURL="http://api.openweathermap.org/v3/uvi/"+iLatitude+","+iLongitude+"/current.json?appid=2475bfaf42fefa968adc693e5cf60572";
         Message.logMessage(sURL);
 
-        String data=getData(sURL);
-        return data;
+        return getData(sURL);
     }
-    @NonNull
     public String getForecast5DataByCityName(String location){
         REQUEST_TYPE="forecast";
         String sURL = BASE_URL+location+API_KEY;
 
-        String data=getData(sURL);
-        return data;
+        return getData(sURL);
     }
-    @NonNull
     public String getWeatherDataByCityName(String location) {
         REQUEST_TYPE="weather";
         String sURL = BASE_URL+location+API_KEY;
 
-        String data=getData(sURL);
-        return data;
+        return getData(sURL);
     }
     //TODO
     public byte[] getImage(String code) {
@@ -79,7 +73,6 @@ public class OpenWeatherMapHttpClient {
 
     }
 
-    @NonNull
     private String getData(String sURL){
         HttpURLConnection connection = null ;
         InputStream inputStream = null;
@@ -97,11 +90,11 @@ public class OpenWeatherMapHttpClient {
 
 
             // Let's read the response
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
 
             inputStream = connection.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-            String line = null;
+            String line ;
             while (  (line = br.readLine()) != null ) {
                 buffer.append(line + "\n");
             }

@@ -21,6 +21,10 @@ public class CurrentCondition {
         this.humidity = humidity;
     }
 
+    public CurrentCondition() {
+
+    }
+
     public int getWeatherId() {
         return weatherId;
     }

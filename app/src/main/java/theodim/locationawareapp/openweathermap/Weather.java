@@ -16,50 +16,50 @@ public class Weather {
     private Wind wind;
     private Rain rain;
     private Snow snow;
-    private Clouds clouds;
+    private Cloud cloud;
     private WeatherDate weatherDate;
     private byte[] iconData;
 
     /*Theo_ Constructors*/
     public  Weather(){}
 
-    public Weather(Location location, CurrentCondition currentCondition, Temperature temperature, Wind wind, Rain rain, Snow snow, Clouds clouds, WeatherDate weatherDate) {
+    public Weather(Location location, CurrentCondition currentCondition, Temperature temperature, Wind wind, Rain rain, Snow snow, Cloud cloud, WeatherDate weatherDate) {
         this.location = location;
         this.currentCondition = currentCondition;
         this.temperature = temperature;
         this.wind = wind;
         this.rain = rain;
         this.snow = snow;
-        this.clouds = clouds;
+        this.cloud = cloud;
         this.weatherDate = weatherDate;
     }
 
-    public Weather(Location location, CurrentCondition currentCondition, Temperature temperature, Wind wind, Rain rain, Clouds clouds, WeatherDate weatherDate) {
+    public Weather(Location location, CurrentCondition currentCondition, Temperature temperature, Wind wind, Rain rain, Cloud cloud, WeatherDate weatherDate) {
         this.location = location;
         this.currentCondition = currentCondition;
         this.temperature = temperature;
         this.wind = wind;
         this.rain = rain;
-        this.clouds = clouds;
+        this.cloud = cloud;
         this.weatherDate = weatherDate;
     }
 
-    public Weather(Location location, CurrentCondition currentCondition, Temperature temperature, Wind wind, Clouds clouds, WeatherDate weatherDate) {
+    public Weather(Location location, CurrentCondition currentCondition, Temperature temperature, Wind wind, Cloud cloud, WeatherDate weatherDate) {
         this.location = location;
         this.currentCondition = currentCondition;
         this.temperature = temperature;
         this.wind = wind;
-        this.clouds = clouds;
+        this.cloud = cloud;
         this.weatherDate = weatherDate;
     }
 
-    public Weather(Location location, CurrentCondition currentCondition, Temperature temperature, Wind wind, Snow snow, Clouds clouds, WeatherDate weatherDate) {
+    public Weather(Location location, CurrentCondition currentCondition, Temperature temperature, Wind wind, Snow snow, Cloud cloud, WeatherDate weatherDate) {
         this.location = location;
         this.currentCondition = currentCondition;
         this.temperature = temperature;
         this.wind = wind;
         this.snow = snow;
-        this.clouds = clouds;
+        this.cloud = cloud;
         this.weatherDate = weatherDate;
     }
 
@@ -72,11 +72,10 @@ public class Weather {
         this.rain=w.getRain();
         this.snow=w.getSnow();
         this.weatherDate=w.getWeatherDate();
-        this.clouds=w.getClouds();
+        this.cloud =w.getCloud();
         this.iconData=w.getIconData();
     }
     /*Theo_ EndOfConstructors*/
-
 
 
     public Location getLocation() {
@@ -127,12 +126,12 @@ public class Weather {
         this.snow = snow;
     }
 
-    public Clouds getClouds() {
-        return clouds;
+    public Cloud getCloud() {
+        return cloud;
     }
 
-    public void setClouds(Clouds clouds) {
-        this.clouds = clouds;
+    public void setCloud(Cloud cloud) {
+        this.cloud = cloud;
     }
 
     public WeatherDate getWeatherDate() {
@@ -149,6 +148,16 @@ public class Weather {
 
     public void setIconData(byte[] iconData) {
         this.iconData = iconData;
+    }
+
+    public boolean hasRain(){
+        return this.rain != null;
+    }
+    public boolean hasSnow(){
+        return this.snow!=null;
+    }
+    public boolean hasIconData(){
+        return this.iconData!=null;
     }
 }
 

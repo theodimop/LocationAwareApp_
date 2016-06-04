@@ -12,9 +12,11 @@ public class WeatherDate {
     private Date date ;
     private DateFormat dateFormat;
 
-    public WeatherDate(Date date, DateFormat dateFormat) {
+    public WeatherDate(Date date) {
         this.date = date;
-        this.dateFormat = dateFormat;
+    }
+    public WeatherDate(Long date){
+        this.date=new Date(date);
     }
 
     public void setDate(Long date){

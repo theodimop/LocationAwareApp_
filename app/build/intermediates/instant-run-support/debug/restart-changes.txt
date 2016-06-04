@@ -1,1 +1,0 @@
-CHANGED,C:\Users\dj_di_000\Documents\Android Studio\LocationAwareApp\app\build\intermediates\transforms\instantRun\debug\folders\1\5\main\theodim\locationawareapp\WeatherInfomation.class
