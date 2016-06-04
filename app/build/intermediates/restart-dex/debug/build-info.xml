@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="armeabi-v7a,armeabi"
+    api-level="21"
+    density="xxxhdpi"
+    format="7"
+    timestamp="176512883070698"
+    verifier="COMPATIBLE" >
+
+    <task
+        name="javac"
+        duration="250" />
+    <task
+        name="instant-run-dex"
+        duration="743" />
+    <task
+        name="instant-run-transform"
+        duration="92" />
+    <task
+        name="verifier"
+        duration="4" />
+
+    <artifact
+        location="C:\Users\dj_di_000\Documents\Android Studio\LocationAwareApp\app\build\intermediates\reload-dex\debug\classes.dex"
+        type="RELOAD_DEX" />
+
+    <build timestamp="174594228564472" >
+        <artifact
+            location="C:\Users\dj_di_000\Documents\Android Studio\LocationAwareApp\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build timestamp="176459457992768" >
+        <artifact
+            location="C:\Users\dj_di_000\Documents\Android Studio\LocationAwareApp\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_8\classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="176512883070698"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\dj_di_000\Documents\Android Studio\LocationAwareApp\app\build\intermediates\reload-dex\debug\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+
+</instant-run>
