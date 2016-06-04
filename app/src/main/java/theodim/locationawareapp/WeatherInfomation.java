@@ -35,7 +35,7 @@ public class WeatherInfomation {
         try {
 
             UV_Index uv_index= OpenWeatherResponseJSONParser.getUV_Index(data);
-            textView.setText(String.valueOf(uv_index.getuV_Index())+" "+uv_index.getLocationGIS().getLatitude());
+            textView.setText(String.valueOf(uv_index.getuV_Index())+" "+uv_index.getLocation().getLatitude());
        //    Forecast5 forecast5 = OpenWeatherResponseJSONParser.getForecast5(data);
        //    textView.setText(forecast5.getThreeHourPeriodWeatherByIndex(15).getWeather().currentCondition.getCondition());
         } catch (JSONException e) {
@@ -80,7 +80,7 @@ public class WeatherInfomation {
 
 
             /*textView.setText(weather.location.getCity() + "," + weather.location.getCountry()+"\n"+
-                    weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")"+"\n"
+                    weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescription() + ")"+"\n"
                     +weather.weatherDate.getFullDateAndTime()+"\n");*/
 
 
@@ -93,7 +93,7 @@ public class WeatherInfomation {
             }
 
             cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
-            condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
+            condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescription() + ")");
             temp.setText("" + Math.round((weather.temperature.getTemp() - 273.15)) + "�C");
             hum.setText("" + weather.currentCondition.getHumidity() + "%");
             press.setText("" + weather.currentCondition.getPressure() + " hPa");

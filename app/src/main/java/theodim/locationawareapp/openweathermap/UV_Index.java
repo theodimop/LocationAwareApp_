@@ -1,13 +1,13 @@
 package theodim.locationawareapp.openweathermap;
 
-import java.util.Date;
+import theodim.locationawareapp.WeatherBaseClasses.Location;
 
 /**
  * Created by dj_di_000 on 17/5/2016.
  * This class is for the uv_index query response
  */
 public class UV_Index {
-    private LocationGIS locationGIS;
+    private Location location;
     private float uV_Index;
     private String sDate;
 
@@ -18,8 +18,8 @@ public class UV_Index {
         /*Theo_ Empty Constructor*/
     }
 
-    public UV_Index(LocationGIS locationGIS, float uV_Index, String sDate) {
-        this.locationGIS = locationGIS;
+    public UV_Index(Location location, float uV_Index, String sDate) {
+        this.location = location;
         this.uV_Index = uV_Index;
         this.sDate = sDate;
     }
@@ -44,12 +44,12 @@ public class UV_Index {
         this.sDate = sDate;
     }
 
-    public LocationGIS getLocationGIS() {
-        return locationGIS;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLocationGIS(LocationGIS locationGIS) {
-        this.locationGIS = locationGIS;
+    public void setLocation(Location location) {
+        this.location = location;
     }
     /*Theo_ EndOfSetters & Getters*/
 

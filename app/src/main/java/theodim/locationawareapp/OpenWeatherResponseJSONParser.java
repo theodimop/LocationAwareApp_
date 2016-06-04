@@ -7,10 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import theodim.locationawareapp.openweathermap.Forecast5;
-import theodim.locationawareapp.openweathermap.LocationGIS;
+import theodim.locationawareapp.WeatherBaseClasses.Location;
 import theodim.locationawareapp.openweathermap.ThreeHourPeriodWeather;
 import theodim.locationawareapp.openweathermap.UV_Index;
 import theodim.locationawareapp.openweathermap.Weather;
@@ -23,32 +22,31 @@ public class OpenWeatherResponseJSONParser {
     /*Theo_ Parse UV Index response methods*/
     @Nullable
     public static UV_Index getUV_Index(String data)throws JSONException{
-        LocationGIS locationGIS=null;
-
+        Location location;
 
         // We create out JSONObject from the data
         JSONObject jObj = new JSONObject(data);
 
-        locationGIS=getLocationUV_indexGIS(jObj);
+        location =getLocationUV_indexGIS(jObj);
         String sDate = getString("time",jObj);
         Float uv_indexValue=getFloat("data",jObj);
 
         //Check if null
-        if(locationGIS!=null && sDate!=null && uv_indexValue!=null)
-            return new UV_Index(locationGIS,uv_indexValue,sDate);
+        if(location !=null && sDate!=null )
+            return new UV_Index(location,uv_indexValue,sDate);
         else {
             Message.logMessage("RETURNED NULL");
             return null;
         }
     }
-    private static LocationGIS getLocationUV_indexGIS(JSONObject jObj) throws JSONException {
+    private static Location getLocationUV_indexGIS(JSONObject jObj) throws JSONException {
 
         JSONObject locationObj = getObject("location",jObj);
 
         Float latitude=getFloat("latitude",locationObj);
         Float longitude=getFloat("longitude",locationObj);
 
-        return new LocationGIS(longitude,latitude);
+        return new Location(longitude,latitude);
     }
     /*Theo_ Parse UV Index response methods END*/
 
@@ -56,16 +54,16 @@ public class OpenWeatherResponseJSONParser {
     public static Forecast5 getForecast5(String data) throws JSONException{
         Forecast5 forecast5=new Forecast5();
         ArrayList<ThreeHourPeriodWeather> threeHourPeriodWeatherList = new ArrayList<>();
-        ThreeHourPeriodWeather threeHourPeriodWeather=null;
+        ThreeHourPeriodWeather threeHourPeriodWeather;
 
-        int numOfjsonObjects=0;
+        int numOfjsonObjects;
 
         // We create out JSONObject from the data
         JSONObject jObj = new JSONObject(data);
 
 
         //We set the location of our forecast
-        forecast5.setLocationGIS(getLocationForecastGIS(jObj));
+        forecast5.setLocation(getLocationForecastGIS(jObj));
         //We get the number of lines
         numOfjsonObjects=getInt("cnt",jObj);
         JSONArray jsonArray= jObj.getJSONArray("list");
@@ -73,12 +71,11 @@ public class OpenWeatherResponseJSONParser {
         //For every 3-hour forecast store the attributes
         for(int i=0;i<numOfjsonObjects-1;i++)
         {
-            threeHourPeriodWeather= new ThreeHourPeriodWeather();
+
 
             JSONObject JSONWeather = jsonArray.getJSONObject(i);
-            threeHourPeriodWeather.setPeriod(getString("dt_txt",JSONWeather));
-            threeHourPeriodWeather.setWeather(getWeatherAttibutes(JSONWeather));
 
+            threeHourPeriodWeather= new ThreeHourPeriodWeather(getWeatherAttibutes(JSONWeather),getString("dt_txt",JSONWeather));
             threeHourPeriodWeatherList.add(threeHourPeriodWeather);
         }
 
@@ -87,8 +84,8 @@ public class OpenWeatherResponseJSONParser {
 
         return forecast5;
     }
-    private static LocationGIS getLocationForecastGIS(JSONObject jObj) throws JSONException {
-        LocationGIS loc=new LocationGIS();
+    private static Location getLocationForecastGIS(JSONObject jObj) throws JSONException {
+        Location loc=new Location();
 
         JSONObject cityObj = getObject("city", jObj);
         loc.setCity(getString("name", cityObj));
@@ -111,7 +108,7 @@ public class OpenWeatherResponseJSONParser {
         JSONObject jObj = new JSONObject(data);
         //Theo_ We get the information about the location
         // We start extracting the info
-        LocationGIS loc = new LocationGIS();
+        Location loc = new Location();
 
         JSONObject coordObj = getObject("coord", jObj);
         loc.setLatitude(getFloat("lat", coordObj));
@@ -123,7 +120,7 @@ public class OpenWeatherResponseJSONParser {
         loc.setSunset(getInt("sunset", sysObj));
         loc.setCity(getString("name", jObj));
 
-        weather.location = loc;
+        weather.setLocation(loc);
         //Theo_ We get the information about the weather
         weather=getWeatherAttibutes(jObj);
 
@@ -135,7 +132,7 @@ public class OpenWeatherResponseJSONParser {
 
         //Theo_ We get the current date & time
         int temp= getInt("dt",jObj);
-        weather.weatherDate.setDate(Long.valueOf(temp)*1000L);
+        weather.getWeatherDate().setDate(temp*1000L);
 
 
         // We get weather info (This is an array)
@@ -143,26 +140,26 @@ public class OpenWeatherResponseJSONParser {
 
         // We use only the first value
         JSONObject JSONWeather = jArr.getJSONObject(0);
-        weather.currentCondition.setWeatherId(getInt("id", JSONWeather));
-        weather.currentCondition.setDescr(getString("description", JSONWeather));
-        weather.currentCondition.setCondition(getString("main", JSONWeather));
-        weather.currentCondition.setIcon(getString("icon", JSONWeather));
+        weather.getCurrentCondition().setWeatherId(getInt("id", JSONWeather));
+        weather.getCurrentCondition().setDescription(getString("description", JSONWeather));
+        weather.getCurrentCondition().setCondition(getString("main", JSONWeather));
+        weather.getCurrentCondition().setIcon(getString("icon", JSONWeather));
 
         JSONObject mainObj = getObject("main", jObj);
-        weather.currentCondition.setHumidity(getInt("humidity", mainObj));
-        weather.currentCondition.setPressure(getInt("pressure", mainObj));
-        weather.temperature.setMaxTemp(getFloat("temp_max", mainObj));
-        weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
-        weather.temperature.setTemp(getFloat("temp", mainObj));
+        weather.getCurrentCondition().setHumidity(getInt("humidity", mainObj));
+        weather.getCurrentCondition().setPressure(getInt("pressure", mainObj));
+        weather.getTemperature().setMaxTemp(getFloat("temp_max", mainObj));
+        weather.getTemperature().setMinTemp(getFloat("temp_min", mainObj));
+        weather.getTemperature().setTemp(getFloat("temp", mainObj));
 
         // Wind
         JSONObject wObj = getObject("wind", jObj);
-        weather.wind.setSpeed(getFloat("speed", wObj));
-        weather.wind.setDeg(getFloat("deg", wObj));
+        weather.getWind().setSpeed(getFloat("speed", wObj));
+        weather.getWind().setDeg(getFloat("deg", wObj));
 
         // Clouds
         JSONObject cObj = getObject("clouds", jObj);
-        weather.clouds.setPerc(getInt("all", cObj));
+        weather.getClouds().setPerc(getInt("all", cObj));
 
         //TODO: Rain & Snow IF EXIST!
 

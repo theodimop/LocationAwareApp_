@@ -1,11 +1,11 @@
-package theodim.locationawareapp.openweathermap;
+package theodim.locationawareapp.WeatherBaseClasses;
 
 import java.io.Serializable;
 
 /**
  * Created by dj_di_000 on 15/5/2016.
  */
-public class LocationGIS implements Serializable {
+public class Location{
 
     private float longitude;
     private float latitude;
@@ -20,11 +20,11 @@ public class LocationGIS implements Serializable {
     * 3 Constructor availiable*/
 
 
-    public LocationGIS(){
+    public Location(){
         /*Theo_ Empty Constructor*/
     }
 
-    public LocationGIS(float longitude,float latitude,long sunrise,long sunset,String country,String city){
+    public Location(float longitude, float latitude, long sunrise, long sunset, String country, String city){
         this.longitude=longitude;
         this.latitude=latitude;
         this.sunset=sunset;
@@ -32,13 +32,13 @@ public class LocationGIS implements Serializable {
         this.country=country;
         this.city=city;
     }
-    public LocationGIS(float longitude,float latitude,String country,String city)    {
+    public Location(float longitude, float latitude, String country, String city)    {
         this.longitude=longitude;
         this.latitude=latitude;
         this.country=country;
         this.city=city;
     }
-    public LocationGIS(float longitude,float latitude)    {
+    public Location(float longitude, float latitude)    {
         this.longitude=longitude;
         this.latitude=latitude;
     }
