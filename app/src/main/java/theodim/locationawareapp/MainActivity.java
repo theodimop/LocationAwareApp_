@@ -1,8 +1,12 @@
 package theodim.locationawareapp;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -16,6 +20,7 @@ public class MainActivity extends AppCompatActivity// implements ConnectionCallb
 
     private TextView textView,textViewWeatherInfo;
     private Weather weather;
+    private boolean isConnected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +42,44 @@ public class MainActivity extends AppCompatActivity// implements ConnectionCallb
         textView= (TextView) findViewById(R.id.textView);
         textViewWeatherInfo= (TextView) findViewById(R.id.textView2);
 
-        WeatherInformation weatherInfomation=new WeatherInformation(textViewWeatherInfo);
+
+
+        if(isConnected())
+            new WeatherInformation(textViewWeatherInfo);
+        else
+            textViewWeatherInfo.setText("No Internet Connection");
 
     }
-/*
+
+    public void updateLocation(View view) {
+        if(isConnected())
+            new WeatherInformation(textViewWeatherInfo);
+        else {
+            textViewWeatherInfo.setText("No Internet Connection");
+            Message.toastMessage(this,"No internet connection");
+        }
+    }
+
+    //Private method to check internet Connection
+    private boolean isConnected(){
+
+        ConnectivityManager cm =
+                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        //Mobile Data and wifi connections are accepted
+        if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE ||
+                activeNetwork.getType() == ConnectivityManager.TYPE_WIFI ) {
+
+            return activeNetwork.isConnectedOrConnecting();
+        }
+
+        return false;
+
+    }
+    /*
+
     @Override
     protected void onStart() {
         mGoogleApiClient.connect();

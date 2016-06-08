@@ -33,7 +33,8 @@ public class WeatherInformation {
       //  data = openWeatherMapHttpClient.getUV_IndexData(41,23);
         data=openWeatherMapHttpClient.getForecast5DataByCityName("Thessaloniki");
         //Log.d("THEO",data);
-        //textView.setText(data);
+
+        textView.setText(data);
 
         try {
 
